@@ -1,0 +1,281 @@
+@import "reset.css";
+
+body {
+    font-family: 'Lobster', cursive;
+}
+
+header {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.user-wrap {
+    position: relative;
+}
+
+.user-wrap img {
+    width: 100%;
+    height: 100%;
+}
+
+.user-canvas {
+    position: absolute;
+    top: 50px;
+    left: 70px;
+}
+
+.canvas{
+    display: flex;
+    justify-content: center;
+}
+
+#slider {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.slides input{
+    display: none;
+}
+
+.slide {
+    width: 20%;
+    transition: 2s;
+}
+
+.navigation-manual{
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: -10vh;
+}
+
+.manual-btn{
+    border: 2px solid black;
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 1s;
+}
+
+.manual-btn:not(:last-child){
+    margin-right: 40px;
+}
+
+.manual-btn:hover{
+    background: black;
+}
+
+#radio1:checked ~ .first{
+    margin-left: 0;
+}
+
+#radio2:checked ~ .first{
+    margin-left: -20%;
+}
+
+#radio3:checked ~ .first{
+    margin-left: -40%;
+}
+
+.canvas_background{
+    width: 100%;
+    height: 100%;
+    background: rgb(0,0,0);
+    background: linear-gradient(0deg, rgba(0,0,0,0) 78%, rgba(0,0,0,0.5374942213213411) 100%);
+    position: absolute;
+}
+
+.cansvas_car_deatail{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+}
+
+.cansvas_car_deatail_rotate_car{
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.cansvas_car_deatail_contents{
+    width: 30%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    visibility: hidden;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.cansvas_car_deatail_content{
+    width: 100%;
+    height: 60%;
+    background: transparent;
+    border: 2px solid rgba(255,255,255,0.5);
+    border-radius: 20px;
+    backdrop-filter: blur(12px);
+    padding: 20px 10px 0 10px;
+}
+
+.cansvas_car_deatail_content div{
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+.cansvas_car_deatail_content div span{
+    padding: 10px;
+}
+
+.cansvas_car_deatail_content div span:nth-child(1){
+    font-size: 1em;
+    font-weight: 600;
+}
+
+.cansvas_car_deatail_content div span:nth-child(2){
+    color: black;
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+.cansvas_car_deatail_content div:nth-child(1){
+    font-size: 1.5em;
+    font-weight: 800;
+    color: black;
+}
+
+.cansvas_car_deatail_content div:nth-child(2){
+    font-size: 1.1em;
+    font-weight: 600;
+    color: black;
+    margin-bottom:30px;
+}
+
+.cansvas_car_deatail_content div:nth-child(3){
+    font-size: 1.5em;
+    font-weight: 800;
+    color: black;
+}
+
+
+.cansvas_car_deatail_content div:nth-child(4),
+.cansvas_car_deatail_content div:nth-child(5),
+.cansvas_car_deatail_content div:nth-child(6),
+.cansvas_car_deatail_content div:nth-child(7),
+.cansvas_car_deatail_content div:nth-child(8) {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cansvas_car_deatail_car_name{
+    text-align: center;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+
+/* 상단바 */
+header {
+    width: 100vw;
+    height: 100px;
+    position: fixed;
+    display: flex;
+    z-index: 1000;
+    justify-content: center;
+}
+
+header:hover {
+    background: black;
+}
+
+nav {
+    width: 80%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    z-index: 50;
+}
+
+.main_header_background {
+    position: absolute;
+    z-index: 20;
+    width: 100%;
+    height: 100%;
+}
+
+.nav_list{
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.main_list {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+}
+
+.main_list > li > a{
+    color: white;
+}
+
+.main_list > li{
+    height: 100px;
+    line-height: 100px;
+}
+
+.main_list > li > a:hover {
+    color: #dedede;
+    transition: all .5s;
+}
+
+.main_list > li > a > i:hover {
+    color: #dedede;
+    transition: all .5s;
+}
+
+.main_list_drop_down{
+    position : relative;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    padding: 6px 0 6px 0;
+}
+
+.main_list_drop_down:hover .main_list_drop_down_list{
+    display: block;
+}
+
+.main_list_drop_down_list{
+    display : none;
+    position : absolute;
+    z-index : 1;
+    width: 100px;
+    height: 200px;
+}
+
+.main_list_drop_down_list > div{
+    display: block;
+    width: 100px;
+    height: 50px;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 50px;
+    color: #fff;
+    background-color: black;
+    /* border: 1px solid white; */
+}
+
+.main_list_drop_down_list > div:hover {
+    background-color: white;
+    color: black;
+}

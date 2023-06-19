@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <title>내 차고</title>
+    <script type="importmap">
+        {
+    "imports": {
+      "three": "https://unpkg.com/three@0.141.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.141.0/examples/jsm/"
+    }
+  }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="main_header_background"></div>
+        <nav>
+            <a href="pages/main/main.html" style="text-decoration-line: none;">
+                <i class="fas far far fas fas fa-car" style="margin-top:6px; font-size: 25px;; background: linear-gradient(297deg, rgba(255,0,0,1) 17%, rgba(255,255,255,1) 66%); color: transparent; -webkit-background-clip: text;"></i>
+                <span class="main_logo_color" style="font-size: 25px; color: white; font-weight: bold;"><span style="color: red;">KCC</span>CAR</span>
+            </a>
+            <ul class="main_list">
+                <li style="padding-top: 6px;"><a class="nav_list" href="pages/vehicle/vehicle.html">둘러보기</a></li>
+                <li style="padding-top: 6px;"><a class="nav_list" href="pages/customerSupport/CustomerSupport.html">고객지원</a></li>
+                <li style="padding-top: 6px;"><a class="nav_list" href="pages/main/main.html">갤러리</a></li>
+                <li class="main_list_drop_down">
+                    <span class="main_list_not_user_logo"><i class="fas far far fas fa-user-plus" style="margin-top:6px; font-size: 20px; color: white;"></i></span>
+                    <span class="main_list_user_logo"><i class="fas far far fas fas far fas fa-user-alt" style="margin-top:6px; font-size: 20px; color: white;"></i></span>
+                    <div class="main_list_drop_down_list">
+                        <div class="main_list_drop_down_login" style="cursor: pointer;" onclick="location.href='pages/login/login.html'">로그인</div>
+                        <div class="main_list_drop_down_signup" style="cursor: pointer;" onclick="location.href='pages/signUp/signUp.html'">회원가입</div>
+                        <div class="main_list_drop_down_myCar" style="cursor: pointer;" onclick="location.href='index.html'">내 차고</div>
+                        <div class="main_list_drop_down_service" style="cursor: pointer;" onclick="location.href='index.html'">내 시승/상담</div>
+                        <div class="main_list_drop_down_logout" style="cursor: pointer;" onclick="handleLogOut()">로그아웃</div>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div class="canvas" style="width: 100vw; height: 100vh; position: relative; display: flex; justify-content: center; ">
+        <div class="canvas_background"></div>
+        <div class="cansvas_car_deatail">
+            <div class="cansvas_car_deatail_rotate_car">
+                <div class="slide" style="width:100%; height:40vh; display: flex; justify-content: center; margin-top: 20vh;">
+                    <canvas class="webg4" style="width:100%; height:100%; visibility: hidden;"></canvas>
+                </div>
+            </div>
+            <div class="cansvas_car_deatail_contents">
+                <div class="cansvas_car_deatail_content">
+                    <div>TOYOTA</div>
+                    <div>CAMRY WILD HYBRID</div>
+                    <div>주요 사양</div>
+                    <div><span>엔진</span><span>2.4L 자연흡기 가솔린 터보 엔진 (GSL Turbo)</span></div>
+                    <div><span>구동 방식</span><span>사륜구동 (E-Four Advanced)</span></div>
+                    <div><span>정부공인표준연비 (복합)</span><span>11.0km/ℓ (4등급)</span></div>
+                    <div><span>최고 출력</span><span>272PS / 6,000rpm</span></div>
+                    <div><span>배기량</span><span>2,393cc</span></div>
+                    <div onclick="location.reload()" style="cursor: pointer; color: black; font-weight: 600; font-size: 1.2em; margin-top: 6%;">내 차고로 돌아가기 ></div>
+                </div>
+            </div>
+        </div>
+        <img src="assets/parkingcars.jpg" style="width: 100%; height: 100%;">
+        <div class="canvas_title" style="position: absolute; font-size: 5em; color: brown; text-shadow: 5px 5px 5px gray; margin-top: 20vh;">Welcome to the KCC</div>
+        <div id="slider" style="position: absolute; width:100%; height:45vh; margin-top: 55vh; overflow: hidden; cursor: pointer;">
+            <div class="slides" style="width:500%; height:100%; display: flex;">
+
+                <input type="radio" name="radio-btn" id="radio1">
+                <input type="radio" name="radio-btn" id="radio2">
+                <input type="radio" name="radio-btn" id="radio3">
+
+                <div class="slide first" style="width:100vw; height:30vh; display: flex; justify-content: center;">
+                    <canvas class="webgl" style="width:100%; height:100%"></canvas>
+                </div>
+                <div class="slide" style="width:100vW; height:30vh; display: flex; justify-content: center;" onclick="handleMyCarDetail()">
+                    <canvas class="webg2" style="width:100%; height:100%"></canvas>
+                </div>
+                <div class="slide" style="width:100vW; height:30vh; display: flex; justify-content: center;">
+                    <canvas class="webg3" style="width:100%; height:100%"></canvas>
+                </div>
+            </div>
+
+            <div class="navigation-manual">
+                <label for="radio1" class="manual-btn"></label>
+                <label for="radio2" class="manual-btn"></label>
+                <label for="radio3" class="manual-btn"></label>
+            </div>
+
+        </div>
+    </div>
+    <script type="module" src="index.js"></script>
+    <script type="module" src="index2.js"></script>
+    <script type="module" src="index3.js"></script>
+    <script type="module" src="index5.js"></script>
+    <script src="https://kit.fontawesome.com/6f58489928.js" crossorigin="anonymous"></script>
+    <script>
+        function handleMyCarDetail() {
+            document.getElementById('slider').style.display = 'none';
+            document.querySelector('.webg4').style.visibility = 'visible';
+            document.querySelector('.cansvas_car_deatail_contents').style.visibility = 'visible';
+            document.querySelector('.canvas_title').style.visibility = 'hidden'
+        }
+    </script>
+</body>
+</html>
