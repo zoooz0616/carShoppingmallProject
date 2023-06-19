@@ -1,0 +1,64 @@
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>갤러리</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='gallery.css'>
+    <script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+    <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.141.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.141.0/examples/jsm/"
+    }
+  }
+    </script>
+    <script src='gallery.js' type="module" defer></script>
+<!--    <script src='gallery.js' type="module" defer></script>-->
+</head>
+<body>
+
+<div class="main_header">
+    <div class="main_header_background"></div>
+    <div class="main_nav">
+        <a href="../main/main.html" style="text-decoration-line: none;">
+            <!-- <img src="assets/kcclogo.png" style="width:200px; height: 70px;"> -->
+            <i class="fas far far fas fas fa-car"
+               style="margin-top:6px; font-size: 25px;; background: linear-gradient(297deg, rgba(255,0,0,1) 17%, rgba(255,255,255,1) 66%); color: transparent; -webkit-background-clip: text;"></i>
+            <span class="main_logo_color" style="font-size: 25px; color: white; font-weight: bold;"><span
+                    style="color: red;">KCC</span>CAR</span>
+        </a>
+        <ul class="main_list">
+            <li style="padding-top: 6px;"><a class="nav_list" href="../vehicle/vehicle.html">둘러보기</a></li>
+            <li style="padding-top: 6px;"><a class="nav_list" href="../customerSupport/CustomerSupport.html">고객지원</a>
+            </li>
+            <li style="padding-top: 6px; padding-bottom: 6px;"><a class="nav_list"href="../gallery/gallery.html">갤러리</a></li>
+            <li class="main_list_drop_down">
+                <span class="main_list_not_user_logo"><i class="fas far far fas fa-user-plus"
+                                                         style="margin-top:10px; font-size: 20px; color: white;"></i></span>
+                <span class="main_list_user_logo"><i class="fas far far fas fas far fas fa-user-alt"
+                                                     style="margin-top:10px; font-size: 20px; color: white;"></i></span>
+                <div class="main_list_drop_down_list">
+                    <div class="main_list_drop_down_login" style="cursor: pointer;"
+                         onclick="location.href='../login/login.html'">로그인
+                    </div>
+                    <div class="main_list_drop_down_signup" style="cursor: pointer;"
+                         onclick="location.href='../signUp/signUp.html'">회원가입
+                    </div>
+                    <div class="main_list_drop_down_myCar" style="cursor: pointer;"
+                         onclick="location.href='../../index.html'">내 차고
+                    </div>
+                    <div class="main_list_drop_down_logout" style="cursor: pointer;" onclick="handleLogOut()">로그아웃</div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<canvas id="canvas" style="width:500px; height:400px;">
+
+</canvas>
+<script src="https://kit.fontawesome.com/6f58489928.js" crossorigin="anonymous"></script>
+</body>
+</html>

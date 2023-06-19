@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>고객지원</title>
+    <link rel="stylesheet" href="CustomerSupport.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="CustomerSupport.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+          rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+          rel="stylesheet">
+</head>
+<body>
+<div class="main_header">
+    <div class="main_header_background"></div>
+    <div class="main_nav">
+        <a href="../main/main.html" style="text-decoration-line: none;">
+            <!-- <img src="assets/kcclogo.png" style="width:200px; height: 70px;"> -->
+            <i class="fas far far fas fas fa-car"
+               style="margin-top:6px; font-size: 25px;; background: linear-gradient(297deg, rgba(255,0,0,1) 17%, rgba(255,255,255,1) 66%); color: transparent; -webkit-background-clip: text;"></i>
+            <span class="main_logo_color" style="font-size: 25px; color: white; font-weight: bold;"><span
+                    style="color: red;">KCC</span>CAR</span>
+        </a>
+        <ul class="main_list">
+            <li style="padding-top: 6px;"><a class="nav_list" href="../vehicle/vehicle.html">둘러보기</a></li>
+            <li style="padding-top: 6px;"><a class="nav_list" href="../customerSupport/CustomerSupport.html">고객지원</a></li>
+            <li style="padding-top: 6px; padding-bottom: 6px;"><a class="nav_list"  href="../gallery/gallery.html">갤러리</a></li>
+            <li class="main_list_drop_down">
+                <span class="main_list_not_user_logo"><i class="fas far far fas fa-user-plus"
+                                                         style="margin-top:10px; font-size: 20px; color: white;"></i></span>
+                <span class="main_list_user_logo"><i class="fas far far fas fas far fas fa-user-alt"
+                                                     style="margin-top:10px; font-size: 20px; color: white;"></i></span>
+                <div class="main_list_drop_down_list">
+                    <div class="main_list_drop_down_login" style="cursor: pointer;"
+                         onclick="location.href='../login/login.html'">로그인
+                    </div>
+                    <div class="main_list_drop_down_signup" style="cursor: pointer;"
+                         onclick="location.href='../signUp/signUp.html'">회원가입
+                    </div>
+                    <div class="main_list_drop_down_myCar" style="cursor: pointer;"
+                         onclick="location.href='../../index.html'">내 차고
+                    </div>
+                    <div class="main_list_drop_down_logout" style="cursor: pointer;" onclick="handleLogOut()">로그아웃</div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<div id="wrap">
+    <div class="visual-wrap">
+        <div class="visual-img">
+            <img src="img/wcarshadow.jpg" alt="carInner">
+        </div>
+        <div class="visual-txt apply">
+            <h2>시승/상담 신청</h2>
+        </div>
+        <div id="progressbar" class="progressbar">
+            <div class="progress"></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="offset-2 offset-lg-1 col-20 col-lg-22">
+                <div class="title-wrap type5">
+                    <h2 class="title-type t-c">시승/상담신청</h2>
+                </div>
+            </div>
+        </div>
+
+        <section>
+            <div class="row">
+                <div class="offset-2 offset-lg-1 col-20 col-lg-22" id="under">
+                    <div class="title-wrap type2" style="display: inline-block">
+                        <h3 class="title-type">모델 선택</h3>
+                    </div>
+                    <div class="title-wrap type2" style="display: inline-block" id="speciButton">
+                        <div type="button" class="btn-type2" style="cursor: pointer"
+                             onclick="location.href='../result/result.html'">신청 내역
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="model">
+                <div class="row">
+                    <div class="col-24">
+                            <ul class="tab-type">
+                                <li class="active"><a href="#" onClick="modelSelect('ALL'); ">ALL</a></li>
+                                <li><a href="#" onClick="modelSelect('Sedan'); ">Sedan</a></li>
+                                <li><a href="#" onClick="modelSelect('SUV'); ">SUV</a></li>
+                                <li><a href="#" onClick="modelSelect('Hatchback');">Hatchback</a></li>
+                                <li><a href="#" onClick="modelSelect('EV');">EV</a></li>
+                            </ul>
+                    </div>
+                </div>
+                <div class="row">
+                        <div class="slider-model slick-initialized slick-slider">
+                            <div class="slick-list draggable">
+                                <div class="slick-track" role="listbox">
+
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </section>
+        <!-- 개인정보입력/개인정보 수집이용 동의 -->
+        <section>
+            <form name="f" id="f">
+                <div class="row">
+                    <div class="offset-2 offset-lg-1 col-20 col-lg-22">
+                        <div class="title-wrap type2">
+                            <h3 class="title-type">
+                                개인정보입력
+                            </h3>
+                            <br>
+                            <span>일부 전시장에서는 만26세 이상만 운전자 시승이 가능하며, 만 26세 이하 고객께서는 동승석 탑승으로 시승이 제한될 수 있습니다.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="offset-2 offset-lg-1 col-20 col-lg-22">
+                        <div class="form">
+                            <div class="form-group">
+                                <div class="form-item">
+                                    <label for="name">신청자 성명 <em>*</em></label>
+                                    <div class="input-default sm">
+                                        <input type="text" name="name" id="name" maxlength="40"
+                                               placeholder="이름을 입력해주세요.">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <div class="form-item">
+                                    <label for="have_car">현재보유 차량모델</label>
+                                    <div class="input-default">
+                                        <input type="text" name="have_car" id="have_car" maxlength="100"
+                                               placeholder="보유 차량을 입력해주세요.">
+                                    </div>
+                                </div>
+                            </div>
+                                <div class="form-group">
+                                    <div class="form-item">
+                                        <label for="birth">출생년도 <em>*</em></label>
+                                        <div class="input-default">
+                                            <div class="select-box">
+                                                <select name="birth" id="birth" class="select">
+                                                    <option value="2012">2012</option>
+                                                    <option value="2013">2013</option>
+                                                    <option value="2014">2014</option>
+                                                    <option value="2015">2015</option>
+                                                    <option value="2016">2016</option>
+                                                    <option value="2017">2017</option>
+                                                    <option value="2018">2018</option>
+                                                    <option value="2019">2019</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <div class="form-group">
+                                <div class="form-item">
+                                    <label for="phone">연락처 <em>*</em></label>
+                                    <div class="input-default col2">
+                                        <input type="text" name="phone" id="phone" maxlength="11"
+                                               placeholder="'-'없이 입력해주세요." data-numonly='true'>
+                                        <!--                                        <a href="javascript:smsAuthSend();" id="sendA" class="btn-type">인증번호 받기</a>-->
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-item">
+                                    <label for="sr">매장 선택 <em>*</em></label>
+                                    <div class="input-default col3">
+                                        <div class="select-box">
+                                            <select name="addressRegion" id="addressRegion1"></select>
+                                            <select name="addressDo" id="addressDo1"></select>
+                                            <select name="addressSiGunGu" id="addressSiGunGu1"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-item">
+                                    <label for="buy">구매시기 <em>*</em></label>
+                                    <div class="input-default">
+                                        <div class="radio-box selected">
+                                            <input type="radio" id="buy" name="purtime" value="3개월 이내" checked>
+                                            <label class="checkbox cb" for="buy"></label>
+                                            <label class="cb" for="buy">3개월 이내</label>
+                                        </div>
+                                        <div class="radio-box">
+                                            <input type="radio" id="buy2" name="purtime" value="6개월 이내">
+                                            <label class="checkbox cb" for="buy2"></label>
+                                            <label class="cb" for="buy2">6개월 이내</label>
+                                        </div>
+                                        <div class="radio-box">
+                                            <input type="radio" id="buy3" name="purtime" value="1년 이내">
+                                            <label class="checkbox cb" for="buy3"></label>
+                                            <label class="cb" for="buy3">1년 이내</label>
+                                        </div>
+                                        <div class="radio-box">
+                                            <input type="radio" id="buy4" name="purtime" value="2년 이내">
+                                            <label class="checkbox cb" for="buy4"></label>
+                                            <label class="cb" for="buy4">2년 이내</label>
+                                        </div>
+                                        <div class="radio-box">
+                                            <input type="radio" id="buy5" name="purtime" value="계획 없음">
+                                            <label class="checkbox cb" for="buy5"></label>
+                                            <label class="cb" for="buy5">계획없음</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="hopeDateTr">
+                                <div class="form-item">
+                                    <label for="datepicker">시승/상담 희망일 <em>*</em></label>
+                                    <div class="input-default calendar">
+                                        <label for="datepicker">
+                                            <input type="text" name="hopedate" id="datepicker" maxlength="8" readonly
+                                                   placeholder="날짜를 선택해주세요.">
+                                            <i class="ico-calendar"></i>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--이거 왜 안나옴?-->
+                            <div id="consultingTr" class="form-group">
+                                <div class="form-item">
+                                    <label for="datepickeraa">상담유형 <em>*</em></label>
+                                    <div class="input-default">
+                                        <div class="radio-box selected">
+                                            <input type="radio" name="coultype" id="type1" value="구매상담" checked>
+                                            <label class="checkbox ob" for="type1"></label>
+                                            <label class="ob" for="type1">구매상담</label>
+                                        </div>
+                                        <div class="radio-box">
+                                            <input type="radio" name="coultype" id="type2" value="일반상담">
+                                            <label class="checkbox ob" for="type2"></label>
+                                            <label class="ob" for="type2">일반상담</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </section>
+        <section>
+            <div class="row">
+                <div class="offset-2 offset-lg-1 col-20 col-lg-22">
+                    <div class="title-wrap type2">
+                        <h3 class="title-type">개인정보 수집∙이용∙제공 동의
+                        </h3>
+                        <br>
+                        <span>귀하는 아래 동의 내용을 확인한 후 개별 동의를 하실 수도 있습니다. 아래의 동의 항목 중에는 선택 동의 사항이 포함되어 있습니다.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="pad">
+                <div class="offset-2 offset-lg-1 col-20 col-lg-22">
+                    <div class="all-gree">
+                        <div class="chk-box">
+                            <input type="checkbox" id="allAgree">
+                            <label class="checkbox" for="allAgree"></label>
+                            <label for="allAgree">전체동의</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="offset-2 offset-lg-1 col-20 col-lg-22">
+                    <div class="form-type2">
+                        <div class="form-group">
+                            <div class="form-item">
+                                <label for="agree">개인정보 수집 및 이용동의(필수) <em>*</em></label>
+                            </div>
+
+                            <div class="form-item">
+                                <div class="input-default">
+                                    <div class="radio-box-type2">
+                                        <input type="radio" name="policy_check0" id="policy_check0y" value="Y">
+                                        <label class="checkbox" for="policy_check0y"></label>
+                                        <label for="policy_check0y">동의</label>
+                                    </div>
+                                    <div class="radio-box-type2">
+                                        <input type="radio" name="policy_check0" id="policy_check0n" value="N">
+                                        <label class="checkbox" for="policy_check0n"></label>
+                                        <label for="policy_check0n">동의안함</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-item">
+                                <div class="btn-wrap">
+                                    <a href="javascript:UI.layerPopUp({selId:'#pop-terms01'});" class="btn-type2">자세히
+                                        보기</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-item">
+                                <label for="agree">개인정보 제3자 제공 동의(필수) <em>*</em></label>
+                            </div>
+                            <div class="form-item">
+                                <div class="input-default">
+                                    <div class="radio-box-type2">
+                                        <input type="radio" name="policy_check1" id="policy_check1y" value="Y">
+                                        <label class="checkbox" for="policy_check1y"></label>
+                                        <label for="policy_check1y">동의</label>
+                                    </div>
+                                    <div class="radio-box-type2">
+                                        <input type="radio" name="policy_check1" id="policy_check1n" value="N">
+                                        <label class="checkbox" for="policy_check1n"></label>
+                                        <label for="policy_check1n">동의안함</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-item">
+                                <div class="btn-wrap">
+                                    <a href="javascript:UI.layerPopUp({selId:'#pop-terms02'});" class="btn-type2">자세히
+                                        보기</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-item">
+                                <label for="agree">개인정보 마케팅목적 수집 및 이용 동의(선택)</label>
+                            </div>
+                            <div class="form-item">
+                                <div class="input-default">
+                                    <div class="radio-box-type2">
+                                        <input type="radio" name="policy_check2" id="policy_check2y" value="Y">
+                                        <label class="checkbox" for="policy_check2y"></label>
+                                        <label for="policy_check2y">동의</label>
+                                    </div>
+                                    <div class="radio-box-type2">
+                                        <input type="radio" name="policy_check2" id="policy_check2n" value="N">
+                                        <label class="checkbox" for="policy_check2n"></label>
+                                        <label for="policy_check2n">동의안함</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-item">
+                                <div class="btn-wrap">
+                                    <a href="javascript:UI.layerPopUp({selId:'#pop-terms03'});" class="btn-type2">자세히
+                                        보기</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-item">
+                                <label for="agree">영리목적 광고성 정보 수신에 대한 동의(선택)</label>
+                            </div>
+                            <div class="form-item">
+                                <div class="input-default">
+                                    <div class="radio-box-type2">
+                                        <input type="radio" name="policy_check5" id="policy_check5y" value="Y">
+                                        <label class="checkbox" for="policy_check5y"></label>
+                                        <label for="policy_check5y">동의</label>
+                                    </div>
+                                    <div class="radio-box-type2">
+                                        <input type="radio" name="policy_check5" id="policy_check5n" value="N">
+                                        <label class="checkbox" for="policy_check5n"></label>
+                                        <label for="policy_check5n">동의안함</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-item">
+                                <div class="btn-wrap">
+                                    <a href="javascript:UI.layerPopUp({selId:'#pop-terms04'});" class="btn-type2">자세히
+                                        보기</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-item">
+                                <label for="agree">개인정보 처리업무 위탁에 대한 동의(선택)</label>
+                            </div>
+                            <div class="form-item">
+                                <div class="input-default">
+                                    <div class="radio-box-type2">
+                                        <input type="radio" name="policy_check3" id="policy_check3y" value="Y">
+                                        <label class="checkbox" for="policy_check3y"></label>
+                                        <label for="policy_check3y">동의</label>
+                                    </div>
+                                    <div class="radio-box-type2">
+                                        <input type="radio" name="policy_check3" id="policy_check3n" value="N">
+                                        <label class="checkbox" for="policy_check3n"></label>
+                                        <label for="policy_check3n">동의안함</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-item">
+                                <div class="btn-wrap">
+                                    <a href="javascript:UI.layerPopUp({selId:'#pop-terms05'});" class="btn-type2">자세히
+                                        보기</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<section>
+    <div class="row">
+        <div class="offset-2 offset-lg-0 col-20 col-lg-24">
+            <div class="btn-wrap t-c">
+                <a href="javascript:blur();" onclick="sendTestDrive();" class="btn-type">시승/상담 신청 완료</a>
+            </div>
+        </div>
+    </div>
+</section>
+<footer>
+    <div class="main_footer">
+        <div class="main_footer_box">
+            <div class="main_footer_mini_box">
+                <div class="main_footer_mini_box_title">문의/법적 고지</div>
+                <div class="main_footer_mini_box_content">법적 고지</div>
+                <div class="main_footer_mini_box_content">개인정보 처리방침</div>
+                <div class="main_footer_mini_box_content">쿠키 정책</div>
+                <div class="main_footer_mini_box_content">사이트맵</div>
+            </div>
+            <div class="main_footer_mini_box">
+                <div class="main_footer_mini_box_title">기업 소개</div>
+                <div class="main_footer_mini_box_content">모델 히스토리</div>
+                <div class="main_footer_mini_box_content">사업망</div>
+                <div class="main_footer_mini_box_content">관계사</div>
+                <div class="main_footer_mini_box_content">협력업체</div>
+            </div>
+            <div class="main_footer_mini_box">
+                <div class="main_footer_mini_box_title">채용 공고</div>
+                <div class="main_footer_mini_box_content">채용 안내</div>
+                <div class="main_footer_mini_box_content">채용 정보</div>
+                <div class="main_footer_mini_box_content">인사 제도</div>
+                <div class="main_footer_mini_box_content">입사 지원</div>
+            </div>
+            <div class="main_footer_mini_box">
+                <div class="main_footer_mini_box_title" style="margin-bottom: 15px;">KCCAR Social Media</div>
+                <div class="main_footer_mini_box_social_media">
+                    <div class="main_footer_mini_box_content"><i class="fab fa-facebook" style="font-size: 20px;"></i>
+                    </div>
+                    <div class="main_footer_mini_box_content"><i class="fab fab fa-youtube"
+                                                                 style="font-size: 20px;"></i></div>
+                    <div class="main_footer_mini_box_content"><i class="fab fab fa-instagram"
+                                                                 style="font-size: 20px;"></i></div>
+                    <div class="main_footer_mini_box_content"><i class="fab fab fa-twitter"
+                                                                 style="font-size: 20px;"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="https://kit.fontawesome.com/6f58489928.js" crossorigin="anonymous"></script>
+</body>
+</html>
